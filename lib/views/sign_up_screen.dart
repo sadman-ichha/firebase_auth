@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fire/helper/auth_helper.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_fire/views/log_in_screen.dart';
 class SingupScreen extends StatelessWidget {
   TextEditingController _emailEditingController = TextEditingController();
   TextEditingController _passEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +53,9 @@ class SingupScreen extends StatelessWidget {
                     ),
                   ]),
             ),
+            ElevatedButton(
+                onPressed: () => AuthHelper().signInWithGoogle(context),
+                child: Text("Login With Google"))
           ],
         ),
       ),

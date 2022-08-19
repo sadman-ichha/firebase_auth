@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'sign_up_screen.dart';
 
 class SplashScreen extends StatelessWidget {
+ 
   final box = GetStorage();
 
   chooseScreen(context) async {
@@ -20,7 +21,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 3), () => chooseScreen(context));
+    Timer(Duration(seconds: 1), () => chooseScreen(context));
 
     return Scaffold(
       body: Center(

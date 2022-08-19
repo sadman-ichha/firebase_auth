@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fire/views/home_screen.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthHelper {
   final box = GetStorage();
 
   Future SignUp(emailAddress, password, context) async {
-    try {
+   
+   try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: emailAddress, password: password);
@@ -55,6 +57,29 @@ class AuthHelper {
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+
+ Future signInWithGoogle(context) async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    UserCredential _userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    User? _user = _userCredential.user;
+
+    if (_user!.uid.isNotEmpty) {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => HomeScreen()));
+    } else {
+      print("something is wrong");
     }
   }
 }
