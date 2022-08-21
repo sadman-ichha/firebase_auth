@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fire/helper/auth_helper.dart';
 import 'package:flutter_fire/views/log_in_screen.dart';
+import 'package:flutter_fire/views/phone_auth_screen.dart';
 
 class SingupScreen extends StatelessWidget {
   TextEditingController _emailEditingController = TextEditingController();
@@ -55,7 +56,13 @@ class SingupScreen extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () => AuthHelper().signInWithGoogle(context),
-                child: Text("Login With Google"))
+                child: Text("Login With Google")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => PhoneAuthScreen()));
+                },
+                child: Text("Phone"))
           ],
         ),
       ),

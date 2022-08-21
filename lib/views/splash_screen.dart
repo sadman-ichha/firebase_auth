@@ -6,7 +6,6 @@ import 'package:get_storage/get_storage.dart';
 import 'sign_up_screen.dart';
 
 class SplashScreen extends StatelessWidget {
- 
   final box = GetStorage();
 
   chooseScreen(context) async {
